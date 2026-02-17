@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>myformat</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 20px;
+        font-family: Georgia, serif;
+        font-size: 18px;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f5f5f5;
+      }
+      
+      tw-passage {
+        display: block;
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 40px;
+        background: white;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        border-radius: 8px;
+        animation: fadeIn 0.4s ease-in;
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      
+      a {
+        color: #2c5aa0;
+        text-decoration: none;
+        border-bottom: 1px solid #2c5aa0;
+        transition: all 0.2s ease;
+      }
+      
+      a:hover {
+        color: #1a3a6e;
+        border-bottom-color: #1a3a6e;
+        background-color: rgba(44, 90, 160, 0.05);
+      }
+      
+      h1, h2, h3 {
+        color: #1a1a1a;
+        margin-top: 1.5em;
+      }
+      
+      h1 { font-size: 2em; }
+      h2 { font-size: 1.5em; }
+      h3 { font-size: 1.2em; }
+    </style>
+  </head>
+  <body>
+    <tw-storydata name="myformat" startnode="1" creator="Twine" creator-version="2.9.0" format="Example" format-version="0.1.3" ifid="2875E2E7-C22C-48C6-BCB3-5C313B9353F1" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">h1 {
+	background-color: green;}
+
+</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="GAME START" tags="" position="625,250" size="100,100">&lt;h1&gt;Let&#39;s test some functionalities!&lt;/h1&gt;
+
+&lt;p&gt;For if/else statements and random numbers-&gt;
+[[Dice Rolling Game]]&lt;/p&gt;
+
+
+&lt;p&gt;For visit tracking &amp; conditionals (try to go back and visit multiple times)-&gt; [[Tavern]]&lt;/p&gt;
+
+&lt;p&gt;For mathematical operations-&gt; [[Loot]]&lt;/p&gt;</tw-passagedata><tw-passagedata pid="2" name="StoryInterface" tags="" position="1050,25" size="100,100">&lt;div id=&quot;container&quot;&gt;
+    &lt;div id=&quot;header&quot;&gt;
+        &lt;span id=&quot;header-text&quot; onclick=&quot;toggle(this)&quot;&gt;&lt;/span&gt; 
+        &lt;div class=&quot;menutoggle&quot;&gt;
+            &lt;span id=&quot;zero&quot; onclick=&quot;toggle(this)&quot;&gt;
+                &lt;i class=&quot;fa fa-ellipsis-v&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+            &lt;/span&gt; 
+            &lt;span id=&quot;one&quot; style=&quot;bottom:-180px;&quot;&gt;
+                &lt;div class=&quot;menu-flex&quot;&gt;&lt;/div&gt;
+            &lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;div id=&quot;story&quot;&gt;
+        &lt;div id=&quot;passages&quot; class=&quot;scroller&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+function toggle() {
+    var x = document.getElementById(&quot;one&quot;);
+    if (!x.style.bottom || x.style.bottom === &#39;-180px&#39;) {
+        x.style.bottom = &#39;0px&#39;;
+    } else {
+        x.style.bottom = &#39;-180px&#39;;
+    }
+}
+&lt;/script&gt;</tw-passagedata><tw-passagedata pid="3" name="Tavern" tags="" position="375,125" size="100,100">&lt;p&gt;
+{if visited &quot;Tavern&quot; is 1}
+The bartender eyes you suspiciously. &quot;New around here?&quot;
+{elseif visited &quot;Tavern&quot; is 2 }
+The bartender greets you warmly. &quot;Back again?&quot;
+{else}
+The bartender seems in shock.  &quot;How many times are you going to pass through here?&quot;
+{endif}
+&lt;/p&gt;
+
+&lt;p&gt;[[Go back-&gt;GAME START]]&lt;/p&gt;</tw-passagedata><tw-passagedata pid="4" name="Dice Rolling Game" tags="" position="800,200" size="100,100">{set $playerScore to 0}
+{set $computerScore to 0}
+{set $rounds to 0}
+
+&lt;h1&gt;=== DICE DUEL ===&lt;/h1&gt;
+
+&lt;p&gt;Best of 5 rounds!&lt;/p&gt;
+
+&lt;p&gt;Your Score: {$playerScore}&lt;/p&gt;
+&lt;p&gt;Computer Score: {$computerScore}&lt;/p&gt;
+
+&lt;p&gt;[[Roll the dice!-&gt;Round]]&lt;/p&gt;</tw-passagedata><tw-passagedata pid="5" name="Round" tags="" position="900,75" size="100,100">{set $rounds to $rounds + 1}
+{random $playerRoll from 1 to 6}
+{random $computerRoll from 1 to 6}
+
+&lt;h1&gt;**Round {$rounds}**&lt;/h1&gt;
+
+&lt;p&gt;You rolled: {$playerRoll}&lt;/p&gt;
+&lt;p&gt;Computer rolled: {$computerRoll}&lt;/p&gt;
+
+&lt;p&gt;
+{if $playerRoll &gt; $computerRoll}    
+{set $playerScore to $playerScore + 1}  
+You won this round!
+{elseif $playerRoll &lt; $computerRoll}
+{set $computerScore to $computerScore + 1}
+Computer won this round!
+{else}
+It&#39;s a tie!
+{endif}
+&lt;/p&gt;
+
+&lt;p/&gt;Current Score - You: {$playerScore} | Computer: {$computerScore}&lt;p/&gt;
+
+{if $rounds &lt; 5}
+[[Next round-&gt;Round]]
+{else}
+[[See final results-&gt;End]]
+{endif}
+</tw-passagedata><tw-passagedata pid="6" name="End" tags="" position="975,225" size="100,100">&lt;h1&gt;=== GAME OVER ===&lt;/h1&gt;
+
+&lt;p&gt;Final Score:&lt;/p&gt;
+&lt;p&gt;You: {$playerScore}&lt;/p&gt;
+&lt;p&gt;Computer: {$computerScore}&lt;/p&gt;
+
+&lt;p&gt;
+{if $playerScore &gt; $computerScore}
+**YOU WIN!**
+{elseif $playerScore &lt; $computerScore}
+**COMPUTER WINS!**
+{else}
+**IT&#39;S A TIE!**
+{endif}
+&lt;/p&gt;
+
+&lt;p&gt;[[Play again-&gt;Dice Rolling Game]]&lt;/p&gt;
+&lt;p&gt;[[Go back-&gt;GAME START]] &lt;/p&gt;</tw-passagedata><tw-passagedata pid="7" name="Shop" tags="" position="575,525" size="100,100">&lt;h1&gt;=== MERCHANT&#39;S SHOP ===&lt;/h1&gt;
+
+&lt;p&gt;Your inventory:&lt;/p&gt;
+&lt;p&gt;- Potions: {$potions}&lt;/p&gt;
+&lt;p&gt;- Swords: {$swords}&lt;/p&gt;
+&lt;p&gt;- Gold: {$gold}&lt;/p&gt;
+
+&lt;p&gt;
+{if $gold &gt;= 25}
+[[Buy potion (25 gold)-&gt;Buy Potion]]
+{endif}
+&lt;/p&gt;
+
+&lt;p&gt;
+{if $gold &gt;= 50}
+[[Buy sword (50 gold)-&gt;Buy Sword]]
+{endif}
+&lt;/p&gt;
+
+{if $gold &lt; 25}
+&lt;p&gt;A shady figure appears, beckoning you closer....&lt;/p&gt;
+&lt;p&gt;[[Need more coin? Try your luck gambling!-&gt;Gamble]]&lt;/p&gt;
+{endif}
+
+&lt;p&gt;
+{if visited &quot;Shop&quot; &gt; 3}
+The merchant says: &quot;Buying from me 3 times in a day? Hey, you&#39;re my best customer!&quot;
+{endif}
+&lt;/p&gt;
+
+&lt;p&gt;[[Leave shop-&gt;GAME START]]&lt;/p&gt;</tw-passagedata><tw-passagedata pid="8" name="Buy Potion" tags="" position="475,650" size="100,100">{set $gold to $gold - 25}
+{set $potions to $potions + 1}
+
+You bought a health potion!
+
+[[Continue shopping-&gt;Shop]]</tw-passagedata><tw-passagedata pid="9" name="Buy Sword" tags="" position="650,675" size="100,100">{set $gold to $gold - 50}
+{set $swords to $swords + 1}
+
+You bought a sword!
+
+[[Continue shopping-&gt;Shop]]</tw-passagedata><tw-passagedata pid="10" name="Loot" tags="" position="400,375" size="100,100">{set $gold to 100}
+{set $potions to 0}
+{set $swords to 0}
+
+&lt;h1&gt;Welcome, adventurer!&lt;/h1&gt;
+&lt;p&gt;Gold: {$gold}&lt;/p&gt;
+
+&lt;p&gt;[[Enter shop-&gt;Shop]]&lt;/p&gt;
+</tw-passagedata><tw-passagedata pid="11" name="Gamble" tags="" position="275,575" size="100,100">{random $prize from 0 to 100}
+
+You spin the wheel...
+
+{if $prize &gt; 80}
+JACKPOT! You win 50 gold!
+{set $gold to $gold + 50}
+{elseif $prize &gt; 50}
+You win 20 gold!
+{set $gold to $gold + 20}
+{elseif $prize &gt; 20}
+You win 5 gold.
+{set $gold to $gold + 5}
+{else}
+Nothing this time!
+{endif}
+
+Gold: {$gold}
+
+[[Try again-&gt;Gamble]]
+[[Leave-&gt;Shop]]</tw-passagedata></tw-storydata>
+    <script>
+      (function(window) {
+        console.log('Story format loaded - v0.1.1');
+
+        window.example = {};
+        
+        window.example.variables = {};
+        window.example.visits = {};
+        
+        window.example.set = function(name, value) {
+          example.variables[name] = value;
+        }
+        
+        window.example.get = function(name) {
+          return example.variables[name];
+        }
+        
+        window.example.unset = function(name) {
+          delete example.variables[name];
+        }
+        
+        window.example.trackVisit = function(passageName) {
+          if (!example.visits[passageName]) {
+            example.visits[passageName] = 0;
+          }
+          example.visits[passageName]++;
+        }
+        
+        window.example.visited = function(passageName) {
+          return example.visits[passageName] || 0;
+        }
+        
+        window.example.random = function(min, max) {
+          return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        
+        window.example.evaluateCondition = function(varName, operator, value) {
+          let varValue = example.get(varName);
+          let compareValue = value.trim();
+          
+          // Check if compareValue is itself a variable (starts with $)
+          if (compareValue.startsWith('$')) {
+            compareValue = example.get(compareValue.substring(1));
+          }
+          // Otherwise parse as before
+          else if ((compareValue.startsWith('"') && compareValue.endsWith('"')) || 
+              (compareValue.startsWith("'") && compareValue.endsWith("'"))) {
+            compareValue = compareValue.slice(1, -1);
+          } else if (compareValue === 'true') {
+            compareValue = true;
+          } else if (compareValue === 'false') {
+            compareValue = false;
+          } else if (!isNaN(compareValue)) {
+            compareValue = Number(compareValue);
+          }
+          switch(operator) {
+            case 'is':
+              return varValue == compareValue;
+            case 'is not':
+              return varValue != compareValue;
+            case '>':
+              return Number(varValue) > Number(compareValue);
+            case '<':
+              return Number(varValue) < Number(compareValue);
+            case '>=':
+              return Number(varValue) >= Number(compareValue);
+            case '<=':
+              return Number(varValue) <= Number(compareValue);
+          }
+          return false;
+        }
+        
+        window.example.parse = function parse(result) {
+          console.log('=== PARSE START ===');
+          
+          // Convert HTML entities first
+          result = result.replace(/&lt;/g, "<");
+          result = result.replace(/&gt;/g, ">");
+          result = result.replace(/&amp;/g, "&");
+          result = result.replace(/&quot;/g, '"');
+          result = result.replace(/&#39;/g, "'");
+
+          // Process script tags
+          result = result.replace(/<script>([\s\S]*?)<\/script>/g, function(match, target) {
+            eval(target);
+            return "";
+          });
+
+          // Process include tags
+          result = result.replace(/<include>(.*?)<\/include>/g, function(match, target) {
+            let passage = example.findPassageByName(target);
+            let result = "";
+            if(passage !== null) {
+              result = example.parse(passage.innerHTML)
+            }
+            return result;
+          });
+
+          // Sequential processing loop
+          let changed = true;
+          let maxIterations = 100;
+          let iterations = 0;
+          
+          while (changed && iterations < maxIterations) {
+            changed = false;
+            iterations++;
+            
+            let firstCommandPos = -1;
+            let firstCommandType = null;
+            let firstCommandMatch = null;
+            
+            // Check for {random}
+            let randomMatch = result.match(/\{random \$(\w+) from (\d+) to (\d+)\}/);
+            if (randomMatch && (firstCommandPos === -1 || result.indexOf(randomMatch[0]) < firstCommandPos)) {
+              firstCommandPos = result.indexOf(randomMatch[0]);
+              firstCommandType = 'random';
+              firstCommandMatch = randomMatch;
+            }
+            
+            // Check for {set}
+            let setMatch = result.match(/\{set \$(\w+) to ([^}]+)\}/);
+            if (setMatch && (firstCommandPos === -1 || result.indexOf(setMatch[0]) < firstCommandPos)) {
+              firstCommandPos = result.indexOf(setMatch[0]);
+              firstCommandType = 'set';
+              firstCommandMatch = setMatch;
+            }
+            
+            // Check for {unset}
+            let unsetMatch = result.match(/\{unset \$(\w+)\}/);
+            if (unsetMatch && (firstCommandPos === -1 || result.indexOf(unsetMatch[0]) < firstCommandPos)) {
+              firstCommandPos = result.indexOf(unsetMatch[0]);
+              firstCommandType = 'unset';
+              firstCommandMatch = unsetMatch;
+            }
+            
+            // Check for {if} (variable conditional)
+            let ifMatch = result.match(/\{if \$(\w+) (is not|is|>=|<=|>|<) (.*?)\}([\s\S]*?)\{endif\}/);
+            if (ifMatch && (firstCommandPos === -1 || result.indexOf(ifMatch[0]) < firstCommandPos)) {
+              firstCommandPos = result.indexOf(ifMatch[0]);
+              firstCommandType = 'if';
+              firstCommandMatch = ifMatch;
+            }
+            
+            // Check for {if visited}
+            let visitedIfMatch = result.match(/\{if visited "(.*?)" (is not|is|>=|<=|>|<) (\d+)\}([\s\S]*?)\{endif\}/);
+            if (visitedIfMatch && (firstCommandPos === -1 || result.indexOf(visitedIfMatch[0]) < firstCommandPos)) {
+              firstCommandPos = result.indexOf(visitedIfMatch[0]);
+              firstCommandType = 'visited-if';
+              firstCommandMatch = visitedIfMatch;
+            }
+            
+            // Process the first command we found
+            if (firstCommandType === 'random') {
+              let varName = firstCommandMatch[1];
+              let min = Number(firstCommandMatch[2]);
+              let max = Number(firstCommandMatch[3]);
+              let randomValue = example.random(min, max);
+              example.set(varName, randomValue);
+              console.log('SET', varName, '=', randomValue);
+              result = result.replace(firstCommandMatch[0], '');
+              changed = true;
+            }
+            else if (firstCommandType === 'set') {
+              let varName = firstCommandMatch[1];
+              let value = firstCommandMatch[2];
+              let evalValue;
+              
+              try {
+                if ((value.startsWith('"') && value.endsWith('"')) || 
+                    (value.startsWith("'") && value.endsWith("'"))) {
+                  evalValue = value.slice(1, -1);
+                } 
+                else if (value === 'true') {
+                  evalValue = true;
+                } else if (value === 'false') {
+                  evalValue = false;
+                }
+                else if (/[+\-*\/()$]/.test(value)) {
+                  let expression = value.replace(/\$(\w+)/g, function(m, v) {
+                    let varValue = example.get(v);
+                    return varValue !== undefined ? varValue : 0;
+                  });
+                  evalValue = eval(expression);
+                }
+                else if (!isNaN(value)) {
+                  evalValue = Number(value);
+                }
+                else {
+                  evalValue = value;
+                }
+              } catch(e) {
+                evalValue = value;
+              }
+              
+              example.set(varName, evalValue);
+              console.log('SET', varName, '=', evalValue);
+              result = result.replace(firstCommandMatch[0], '');
+              changed = true;
+            }
+            else if (firstCommandType === 'unset') {
+              let varName = firstCommandMatch[1];
+              example.unset(varName);
+              result = result.replace(firstCommandMatch[0], '');
+              changed = true;
+            }
+            else if (firstCommandType === 'if') {
+              let varName = firstCommandMatch[1];
+              let operator = firstCommandMatch[2];
+              let value = firstCommandMatch[3];
+              let content = firstCommandMatch[4];
+              
+              console.log('IF:', varName, '('+example.get(varName)+')', operator, value);
+              
+              // Parse branches
+              let branches = [];
+              let currentBranch = {type: 'if', content: '', varName: varName, operator: operator, value: value};
+              let depth = 0;
+              let i = 0;
+              
+              while (i < content.length) {
+                let remaining = content.substr(i);
+                
+                if (remaining.startsWith('{if ')) {
+                  depth++;
+                  currentBranch.content += content[i];
+                  i++;
+                }
+                else if (remaining.startsWith('{endif}')) {
+                  if (depth > 0) {
+                    depth--;
+                    currentBranch.content += content.substr(i, 7);
+                    i += 7;
+                  } else {
+                    break;
+                  }
+                }
+                else if (remaining.startsWith('{elseif ') && depth === 0) {
+                  branches.push(currentBranch);
+                  let condEnd = content.indexOf('}', i);
+                  let condStr = content.substring(i + 8, condEnd);
+                  let condMatch = condStr.match(/\$(\w+) (is not|is|>=|<=|>|<) (.+)/);
+                  if (condMatch) {
+                    currentBranch = {
+                      type: 'elseif', 
+                      content: '', 
+                      varName: condMatch[1], 
+                      operator: condMatch[2], 
+                      value: condMatch[3].trim()
+                    };
+                  }
+                  i = condEnd + 1;
+                }
+                else if (remaining.startsWith('{else}') && depth === 0) {
+                  branches.push(currentBranch);
+                  currentBranch = {type: 'else', content: ''};
+                  i += 6;
+                }
+                else {
+                  currentBranch.content += content[i];
+                  i++;
+                }
+              }
+              
+              branches.push(currentBranch);
+              console.log('Branches:', branches.length);
+              
+              // Evaluate and pick winner
+              let winningContent = '';
+              for (let branch of branches) {
+                if (branch.type === 'if' || branch.type === 'elseif') {
+                  let conditionMet = example.evaluateCondition(branch.varName, branch.operator, branch.value);
+                  console.log('  ', branch.type, branch.varName, '('+example.get(branch.varName)+')', branch.operator, branch.value, '=', conditionMet);
+                  if (conditionMet) {
+                    winningContent = branch.content;
+                    console.log('  WINNER!');
+                    break;
+                  }
+                } else if (branch.type === 'else') {
+                  winningContent = branch.content;
+                  console.log('  Using else');
+                  break;
+                }
+              }
+              
+              result = result.replace(firstCommandMatch[0], winningContent);
+              changed = true;
+            }
+            else if (firstCommandType === 'visited-if') {
+              let passageName = firstCommandMatch[1];
+              let operator = firstCommandMatch[2];
+              let value = Number(firstCommandMatch[3]);
+              let content = firstCommandMatch[4];
+              
+              console.log('IF VISITED:', passageName, '('+example.visited(passageName)+')', operator, value);
+              
+              // Parse branches similar to regular if statements
+              let branches = [];
+              let currentBranch = {type: 'if', content: '', passageName: passageName, operator: operator, value: value};
+              let depth = 0;
+              let i = 0;
+              
+              while (i < content.length) {
+                let remaining = content.substr(i);
+                
+                if (remaining.startsWith('{if ')) {
+                  depth++;
+                  currentBranch.content += content[i];
+                  i++;
+                }
+                else if (remaining.startsWith('{endif}')) {
+                  if (depth > 0) {
+                    depth--;
+                    currentBranch.content += content.substr(i, 7);
+                    i += 7;
+                  } else {
+                    break;
+                  }
+                }
+                else if (remaining.startsWith('{elseif visited ') && depth === 0) {
+                  branches.push(currentBranch);
+                  // Extract: {elseif visited "PassageName" operator value}
+                  let condEnd = content.indexOf('}', i);
+                  let condStr = content.substring(i + 16, condEnd);
+                  let condMatch = condStr.match(/"(.*?)" (is not|is|>=|<=|>|<) (\d+)/);
+                  if (condMatch) {
+                    currentBranch = {
+                      type: 'elseif', 
+                      content: '', 
+                      passageName: condMatch[1], 
+                      operator: condMatch[2], 
+                      value: Number(condMatch[3])
+                    };
+                  }
+                  i = condEnd + 1;
+                }
+                else if (remaining.startsWith('{else}') && depth === 0) {
+                  branches.push(currentBranch);
+                  currentBranch = {type: 'else', content: ''};
+                  i += 6;
+                }
+                else {
+                  currentBranch.content += content[i];
+                  i++;
+                }
+              }
+              
+              branches.push(currentBranch);
+              console.log('Visited Branches:', branches.length);
+              
+              // Evaluate and pick winner
+              let winningContent = '';
+              for (let branch of branches) {
+                if (branch.type === 'if' || branch.type === 'elseif') {
+                  let visitCount = example.visited(branch.passageName);
+                  let condition = false;
+                  
+                  switch(branch.operator) {
+                    case 'is': condition = visitCount == branch.value; break;
+                    case 'is not': condition = visitCount != branch.value; break;
+                    case '>': condition = visitCount > branch.value; break;
+                    case '<': condition = visitCount < branch.value; break;
+                    case '>=': condition = visitCount >= branch.value; break;
+                    case '<=': condition = visitCount <= branch.value; break;
+                  }
+                  
+                  console.log('  ', branch.type, 'visited', branch.passageName, '('+visitCount+')', branch.operator, branch.value, '=', condition);
+                  
+                  if (condition) {
+                    winningContent = branch.content;
+                    console.log('  WINNER!');
+                    break;
+                  }
+                } else if (branch.type === 'else') {
+                  winningContent = branch.content;
+                  console.log('  Using else');
+                  break;
+                }
+              }
+              
+              result = result.replace(firstCommandMatch[0], winningContent);
+              changed = true;
+            }
+          }
+
+          // Display commands
+          result = result.replace(/\{visited "(.*?)"\}/g, function(match, passageName) {
+            return example.visited(passageName);
+          });
+
+          result = result.replace(/\{\$(\w+)\}/g, function(match, varName) {
+            let value = example.get(varName);
+            return value !== undefined ? value : '';
+          });
+
+          // Formatting
+          result = result.replace(/__(.*?)__/g, function (match, target) {
+            return `<em>${target}</em>`;
+          });
+
+          result = result.replace(/\*\*(.*?)\*\*/g, function (match, target) {
+            return `<strong>${target}</strong>`;
+          });
+
+          // Links
+          result = result.replace(/\[\[(.*?)\]\]/g, function (match, target) {
+            var display = target;
+            var barIndex = target.indexOf('|');
+
+            if (barIndex !== -1) {
+              display = target.substr(0, barIndex);
+              target = target.substr(barIndex + 1);
+            } else {
+              var rightArrIndex = target.indexOf('->');
+              if (rightArrIndex !== -1) {
+                display = target.substr(0, rightArrIndex);
+                target = target.substr(rightArrIndex + 2);
+              } else {
+                var leftArrIndex = target.indexOf('<-');
+                if (leftArrIndex !== -1) {
+                  display = target.substr(leftArrIndex + 2);
+                  target = target.substr(0, leftArrIndex);
+                }
+              }
+            }
+
+            return '<a href="javascript:void(0)" data-passage="' + target + '">' + display + '</a>';
+          });
+
+          console.log('=== PARSE END ===');
+          return result;
+        }
+
+        window.example.findPassageByPid = function findPassageByPid(pid) {
+          return document.querySelector(`[pid="${pid}"]`);
+        }
+
+        window.example.findPassageByName = function findPassageByName(name) {
+          return document.querySelector(`[name="${name}"]`);
+        }
+
+        window.example.showPassage = function showPassage(passagedata) {
+          let passage = document.querySelector('tw-passage');
+          if(passage === null) {
+            passage = document.createElement('tw-passage');
+          }
+
+          let passageName = passagedata.attributes['name'].value;
+          example.trackVisit(passageName);
+
+          let passageContents = passagedata.innerHTML;
+          passageContents = example.parse(passageContents);
+          passage.innerHTML = passageContents;
+
+          let links = passage.querySelectorAll('a[data-passage]');
+          for(let link of links) {
+            link.addEventListener('click', function() {
+              let passagename = this.attributes["data-passage"].value;
+              let passagedata = example.findPassageByName(passagename);
+              example.showPassage(passagedata);
+            });
+          }
+
+          let passagesContainer = document.querySelector('#passages');
+          if(passagesContainer) {
+            passagesContainer.innerHTML = '';
+            passagesContainer.appendChild(passage);
+          } else {
+            document.body.appendChild(passage);
+          }
+        }
+
+        window.example.setupInterface = function setupInterface() {
+          let interfacePassage = example.findPassageByName('StoryInterface');
+          if(interfacePassage !== null) {
+            let interfaceHTML = interfacePassage.innerHTML;
+            interfaceHTML = example.parse(interfaceHTML);
+            let tempDiv = document.createElement('div');
+            tempDiv.innerHTML = interfaceHTML;
+            while(tempDiv.firstChild) {
+              document.body.appendChild(tempDiv.firstChild);
+            }
+          }
+        }
+
+        let storydata = document.querySelector('tw-storydata');
+        let startnode = storydata.attributes['startnode'].value;
+        let passagedata = window.example.findPassageByPid(startnode);
+        
+        let stylesheet = storydata.querySelector('style');
+        if(stylesheet !== null) {
+          let newStyle = stylesheet.cloneNode(true);
+          newStyle.setAttribute('type', 'text/css');
+          document.head.appendChild(newStyle);
+        }
+
+        example.setupInterface();
+        example.showPassage(passagedata);
+
+      }(window))
+    </script>
+  </body>
+</html>
