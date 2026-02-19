@@ -310,7 +310,8 @@
 
 &lt;p&gt;For save/load system-&gt; [[Save System test-&gt;SAVE SYSTEM TEST]]&lt;/p&gt;
 
-&lt;p&gt;This should be **bold** and this __italic__&lt;/p&gt;</tw-passagedata><tw-passagedata pid="2" name="StoryInterface" tags="" position="1050,25" size="100,100">&lt;div id=&quot;container&quot;&gt;
+&lt;p&gt;This should be **bold** and this __italic__&lt;/p&gt;
+</tw-passagedata><tw-passagedata pid="2" name="StoryInterface" tags="" position="1050,25" size="100,100">&lt;div id=&quot;container&quot;&gt;
     &lt;div id=&quot;header&quot;&gt;
         &lt;span id=&quot;header-text&quot; onclick=&quot;toggle(this)&quot;&gt;&lt;/span&gt; 
         &lt;div class=&quot;menutoggle&quot;&gt;
@@ -349,6 +350,7 @@ The bartender seems in shock.  &quot;How many times are you going to pass throug
 {endif}
 &lt;/p&gt;
 
+&lt;p&gt;(You&#39;ve visited the Tavern {visited &quot;Tavern&quot;} times)&lt;/p&gt;
 &lt;p&gt;[[Go back-&gt;GAME START]]&lt;/p&gt;</tw-passagedata><tw-passagedata pid="4" name="Dice Rolling Game" tags="" position="800,200" size="100,100">{set $playerScore to 0}
 {set $computerScore to 0}
 {set $rounds to 0}
@@ -529,29 +531,29 @@ Your current name is: {$playerName}
 {set $questProgress to &quot;midpoint&quot;}
 {random $randomValue from 1 to 100}
 
-You&#39;ve made progress!
+&lt;p&gt;You&#39;ve made progress!&lt;/p&gt;
 
-**Current State:**
+&lt;p&gt;**Current State:**&lt;/p&gt;
 &lt;p&gt;- Test Counter: {$testCounter}&lt;/p&gt;
 &lt;p&gt;- Player Name: {$playerName}&lt;/p&gt;
 &lt;p&gt;- Quest Progress: {$questProgress}&lt;/p&gt;
 &lt;p&gt;- Random Value Generated: {$randomValue}&lt;/p&gt;
 &lt;p&gt;- Times in Room 2: {visited &quot;Test Room 2&quot;}&lt;/p&gt;
 
-**Test the conditional:**
+&lt;p&gt;**Test the conditional:**&lt;/p&gt;
 {if $testCounter &gt; 5}
-You&#39;ve clicked through many times! (Counter &gt; 5)
+&lt;p&gt;You&#39;ve clicked through many times! (Counter &gt; 5)&lt;/p&gt;
 {elseif $testCounter &gt; 2}
-You&#39;re making progress. (Counter &gt; 2)
+&lt;p&gt;You&#39;re making progress. (Counter &gt; 2)&lt;/p&gt;
 {else}
-Just getting started. (Counter &lt;= 2)
+&lt;p&gt;Just getting started. (Counter &lt;= 2)&lt;/p&gt;
 {endif}
 
-[[Go deeper-&gt;Test Room 3]]
-[[Back to Room 1-&gt;Test Room 1]]
-[[Return to start-&gt;SAVE SYSTEM TEST]]
+&lt;p&gt;[[Go deeper-&gt;Test Room 3]]&lt;/p&gt;
+&lt;p&gt;[[Back to Room 1-&gt;Test Room 1]]&lt;/p&gt;
+&lt;p&gt;[[Return to start-&gt;SAVE SYSTEM TEST]]&lt;/p&gt;
 
-**Test Save Here:** Save again. Your counter should be higher than last time.
+&lt;p&gt;**Test Save Here:** Save again. Your counter should be higher than last time.&lt;/p&gt;
 </tw-passagedata><tw-passagedata pid="16" name="Test Room 3" tags="" position="300,50" size="100,100">=== ROOM 3: The Deep End ===
 
 {set $testCounter to $testCounter + 1}
@@ -559,60 +561,61 @@ Just getting started. (Counter &lt;= 2)
 {set $treasureFound to true}
 {set $goldAmount to 500}
 
-You found treasure!
+&lt;p&gt;You found treasure!&lt;/p&gt;
 
-**Current State:**
-- Test Counter: {$testCounter}
-- Player Name: {$playerName}
-- Quest Progress: {$questProgress}
-- Treasure Found: {$treasureFound}
-- Gold Amount: {$goldAmount}
-- Times in Room 3: {visited &quot;Test Room 3&quot;}
+&lt;p&gt;**Current State:**&lt;/p&gt;
+&lt;p&gt;- Test Counter: {$testCounter}&lt;/p&gt;
+&lt;p&gt;- Player Name: {$playerName}&lt;/p&gt;
+&lt;p&gt;- Quest Progress: {$questProgress}&lt;/p&gt;
+&lt;p&gt;- Treasure Found: {$treasureFound}&lt;/p&gt;
+&lt;p&gt;- Gold Amount: {$goldAmount}&lt;/p&gt;
+&lt;p&gt;- Times in Room 3: {visited &quot;Test Room 3&quot;}&lt;/p&gt;
 
-**Visit Tracking Test:**
+&lt;p&gt;**Visit Tracking Test:**&lt;/p&gt;
 {if visited &quot;Test Room 3&quot; is 1}
-**First time here!**
+&lt;p&gt;**First time here!**&lt;/p&gt;
 {else}
-You&#39;ve been here {visited &quot;Test Room 3&quot;} times.
+&lt;p&gt;You&#39;ve been here {visited &quot;Test Room 3&quot;} times.&lt;/p&gt;
 {endif}
 
-[[Finish the test-&gt;Test Complete]]
-[[Back to Room 2-&gt;Test Room 2]]
-[[Return to start-&gt;SAVE SYSTEM TEST]]
 
-**Test Save/Load:**
-1. Save your game now
-2. Click &quot;Finish the test&quot;
-3. In the final room, load your save
-4. You should return HERE with all current values</tw-passagedata><tw-passagedata pid="17" name="Test Complete" tags="" position="500,150" size="100,100">=== TEST COMPLETE ===
+&lt;p&gt;[[Finish the test-&gt;Test Complete]]&lt;/p&gt;
+&lt;p&gt;[[Back to Room 2-&gt;Test Room 2]]&lt;/p&gt;
+&lt;p&gt;[[Return to start-&gt;SAVE SYSTEM TEST]]&lt;/p&gt;
+
+&lt;p&gt;**Test Save/Load:**&lt;/p&gt;
+&lt;p&gt;1. Save your game now&lt;/p&gt;
+&lt;p&gt;2. Click &quot;Finish the test&quot;&lt;/p&gt;
+&lt;p&gt;3. In the final room, load your save&lt;/p&gt;
+&lt;p&gt;4. You should return HERE with all current values&lt;/p&gt;</tw-passagedata><tw-passagedata pid="17" name="Test Complete" tags="" position="500,150" size="100,100">=== TEST COMPLETE ===
 
 {set $testCounter to $testCounter + 1}
 {set $questProgress to &quot;completed&quot;}
 
-**Final State:**
-- Test Counter: {$testCounter}
-- Player Name: {$playerName}
-- Quest Progress: {$questProgress}
-- Treasure Found: {$treasureFound}
-- Gold Amount: {$goldAmount}
+&lt;p&gt;**Final State:**&lt;/p&gt;
+&lt;p&gt;- Test Counter: {$testCounter}&lt;/p&gt;
+&lt;p&gt;- Player Name: {$playerName}&lt;/p&gt;
+&lt;p&gt;- Quest Progress: {$questProgress}&lt;/p&gt;
+&lt;p&gt;- Treasure Found: {$treasureFound}&lt;/p&gt;
+&lt;p&gt;- Gold Amount: {$goldAmount}&lt;/p&gt;
 
-**Test Results:**
-✓ Variables carried through: {$testCounter} passages visited
-✓ Name changes preserved: {$playerName}
-✓ Quest progress tracked: {$questProgress}
+&lt;p&gt;**Test Results:**&lt;/p&gt;
+&lt;p&gt;✓ Variables carried through (testCounter): {$testCounter}&lt;/p&gt;
+&lt;p&gt;✓ Name changes preserved: {$playerName}&lt;/p&gt;
+&lt;p&gt;✓ Quest progress tracked: {$questProgress}&lt;/p&gt;
 {if $treasureFound is true}
-✓ Boolean values work: Treasure status saved
+&lt;p&gt;✓ Boolean values work: Treasure status saved&lt;/p&gt;
 {endif}
-✓ Visit tracking works: Been here {visited &quot;Test Complete&quot;} time(s)
+&lt;p&gt;✓ Visit tracking works: Been here {visited &quot;Test Complete&quot;} time(s)&lt;/p&gt;
 
-**Now test loading:**
-1. Load a previous save from the sidebar
-2. Verify you return to the correct room with correct values
-3. Try the disk save/load feature
+&lt;p&gt;**Now test loading:**&lt;/p&gt;
+&lt;p&gt;1. Load a previous save from the sidebar&lt;/p&gt;
+&lt;p&gt;2. Verify you return to the correct room with correct values&lt;/p&gt;
+&lt;p&gt;3. Try the disk save/load feature&lt;/p&gt;
 
-[[Start over-&gt;SAVE SYSTEM TEST]]
+&lt;p&gt;[[Start over-&gt;SAVE SYSTEM TEST]]&lt;/p&gt;
 
-**Verification:** If you load a save from Room 1 or 2, your counter should go DOWN to that saved value.</tw-passagedata><tw-passagedata pid="18" name="Untitled Passage" tags="" position="475,0" size="100,100"></tw-passagedata></tw-storydata>
+&lt;p&gt;**Verification:** If you load a save from Room 1 or 2, your counter should go DOWN to that saved value.&lt;/p&gt;</tw-passagedata><tw-passagedata pid="18" name="Untitled Passage" tags="" position="475,0" size="100,100"></tw-passagedata></tw-storydata>
     <!-- Sidebar -->
     <button id="ui-bar-toggle" title="Toggle Sidebar">&gt;</button>
     <div id="ui-bar">
